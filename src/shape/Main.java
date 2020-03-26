@@ -13,7 +13,8 @@ public class Main {
         double side2 = scanner.nextDouble();
         System.out.println("Enter triangle's side3 : ");
         double side3 = scanner.nextDouble();
+
         Triangle triangle = new Triangle(color, side1, side2, side3);
-        System.out.println(triangle);
+        System.out.println(triangle.toString());
     }
 }

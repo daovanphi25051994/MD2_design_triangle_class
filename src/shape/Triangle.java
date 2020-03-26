@@ -45,19 +45,44 @@ public class Triangle extends Shape {
         this.side3 = side3;
     }
 
+    public boolean isTriangle() {
+        if ((this.side1 > 0) && (this.side2 > 0) && (this.side3 > 0)) {
+            double halfPerimeter = (this.side1 + this.side2 + this.side3) / 2;
+            if (halfPerimeter <= this.side1 || halfPerimeter <= this.side2 || halfPerimeter < this.side3) {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return false;
+        }
+    }
+
     public double getPerimeter() {
-        return (this.side1 + this.side2 + this.side3);
+        if (isTriangle()) {
+            return (this.side1 + this.side2 + this.side3);
+        } else {
+            return 0;
+        }
     }
 
     public double getArea() {
-        double halfPerimeter = this.getPerimeter() / 2;
-        double area = Math.sqrt(halfPerimeter * (halfPerimeter - this.side1) * (halfPerimeter - this.side2) * (halfPerimeter - this.side3));
-        return area;
+        if (this.isTriangle()) {
+            double halfPerimeter = this.getPerimeter() / 2;
+            double area = Math.sqrt(halfPerimeter * (halfPerimeter - this.side1) * (halfPerimeter - this.side2) * (halfPerimeter - this.side3));
+            return area;
+        } else {
+            return 0;
+        }
     }
 
     @Override
     public String toString() {
-        return super.toString() + " with 3 sides (" + this.side1 + "," + this.side2 + "," + this.side3
-                + ") ; perimeter : " + this.getPerimeter() + " ; area: " + this.getArea();
+        if (this.isTriangle()) {
+            return "A triangle with  " + super.toString() + " with 3 sides (" + this.side1 + "," + this.side2 + "," + this.side3
+                    + ") ; perimeter : " + this.getPerimeter() + " ; area: " + this.getArea();
+        } else {
+            return "invalid input !!";
+        }
     }
 }
